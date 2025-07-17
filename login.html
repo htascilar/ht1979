@@ -5,55 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Oturumu Aç</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-    h2 {
-      color: #333;
-    }
-    form {
-      background: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-    input[type="email"],
-    input[type="password"] {
-      display: block;
-      width: 250px;
-      margin-bottom: 15px;
-      padding: 10px;
-      font-size: 16px;
-    }
-    label {
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 15px;
-    }
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      background: #1979ff;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    .error {
-      color: red;
-      font-size: 14px;
-      margin-top: 10px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <h2>🔐 Oturumu Aç</h2>
@@ -68,10 +20,8 @@
     <div class="error" id="error"></div>
   </form>
 
-  <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
-
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDwubhw-8P6s3zPJLYWkJF0Jyw5_sLWt2I",
@@ -97,7 +47,6 @@
       }
     };
 
-    // Login handler
     document.getElementById('loginForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const email = document.getElementById('email').value;
