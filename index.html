@@ -11,17 +11,30 @@
   <h1>📁 HT1979 - Kişisel Uygulama Paneli</h1>
   <nav>
     <ul>
-      <li><a href="#">🕒 Mesai Takip</a></li>
-      <li><a href="#">🧠 Not Defteri</a></li>
-      <li><a href="#">💰 Harcama Takibi</a></li>
-      <li><a href="#">✅ Görevler</a></li>
-      <li><a href="#">📅 Takvim</a></li>
-      <li><a href="#">📊 Grafikler</a></li>
-      <li><a href="#">🌐 Portfolyo</a></li>
-      <li><a href="#">📁 Dosyalar</a></li>
-      <li><a href="#">🔐 Günlük</a></li>
+      <li><a href="modules/mesai.html">🕒 Mesai Takip</a></li>
+      <li><a href="modules/notlar.html">🧠 Not Defteri</a></li>
+      <li><a href="modules/harcamalar.html">💰 Harcama Takibi</a></li>
     </ul>
   </nav>
-  <script src="app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDwubhw-8P6s3zPJLYWkJF0Jyw5_sLWt2I",
+      authDomain: "ht1979-1d7ce.firebaseapp.com",
+      projectId: "ht1979-1d7ce",
+      storageBucket: "ht1979-1d7ce.firebasestorage.app",
+      messagingSenderId: "212240988469",
+      appId: "1:212240988469:web:9262b1a5f8aeed4411b47c",
+      measurementId: "G-6XPK9S4FD4"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (!user) {
+        window.location.href = "login.html";
+      }
+    });
+  </script>
 </body>
 </html>
