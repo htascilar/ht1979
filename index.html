@@ -3,19 +3,37 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>HT1979 Panel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giriş Sayfası</title>
   <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <h1>📁 HT1979 - Kişisel Panel</h1>
-  <p>Giriş başarılı, artık bu sayfayı görebiliyorsun ✅</p>
-
-  <button id="logoutBtn">🚪 Oturumu Kapat</button>
-
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
-  <script>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Oturumu Aç</h2>
+    <form id="login-form">
+      <input type="email" id="email" placeholder="Email" required /><br />
+      <input type="password" id="password" placeholder="Şifre" required /><br />
+      <div class="remember-me">
+        <input type="checkbox" id="remember" />
+        <label for="remember">Beni Hatırla</label>
+      </div>
+      <button type="submit">Giriş Yap</button>
+    </form>
+    <p id="error-message" class="error"></p>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import {
+      getAuth,
+      signInWithEmailAndPassword,
+      setPersistence,
+      browserLocalPersistence,
+      browserSessionPersistence
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
     const firebaseConfig = {
       apiKey: "AIzaSyDwubhw-8P6s3zPJLYWkJF0Jyw5_sLWt2I",
       authDomain: "ht1979-1d7ce.firebaseapp.com",
@@ -26,19 +44,26 @@
       measurementId: "G-6XPK9S4FD4"
     };
 
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const loginForm = document.getElementById('login-form');
+    const errorMessage = document.getElementById('error-message');
 
-    auth.onAuthStateChanged((user) => {
-      if (!user) {
-        window.location.href = "login.html";
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const remember = document.getElementById('remember').checked;
+
+      const persistenceType = remember ? browserLocalPersistence : browserSessionPersistence;
+
+      try {
+        await setPersistence(auth, persistenceType);
+        await signInWithEmailAndPassword(auth, email, password);
+        window.location.assign("panel.html");
+      } catch (error) {
+        errorMessage.textContent = error.message;
       }
-    });
-
-    document.getElementById("logoutBtn").addEventListener("click", () => {
-      auth.signOut().then(() => {
-        window.location.href = "login.html";
-      });
     });
   </script>
 </body>
