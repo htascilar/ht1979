@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HT1979 Giriş</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    h2 {
+      color: #333;
+    }
+    form {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    input {
+      display: block;
+      width: 250px;
+      margin-bottom: 15px;
+      padding: 10px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #1979ff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>🔐 HT1979 Giriş</h2>
+  <form id="loginForm">
+    <input type="email" id="email" placeholder="E-posta adresi" required />
+    <input type="password" id="password" placeholder="Şifre" required />
+    <button type="submit">Giriş Yap</button>
+    <div class="error" id="error"></div>
+  </form>
+
+  <!-- Firebase App (core SDK) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script>
+
+  <script>
+    // Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyDwubhw-8P6s3zPJLYWkJF0Jyw5_sLWt2I",
+      authDomain: "ht1979-1d7ce.firebaseapp.com",
+      projectId: "ht1979-1d7ce",
+      storageBucket: "ht1979-1d7ce.firebasestorage.app",
+      messagingSenderId: "212240988469",
+      appId: "1:212240988469:web:9262b1a5f8aeed4411b47c",
+      measurementId: "G-6XPK9S4FD4"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    // Form submit handler
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const errorDiv = document.getElementById('error');
+
+      auth.signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          window.location.href = "index.html";
+        })
+        .catch((error) => {
+          errorDiv.textContent = "❌ " + error.message;
+        });
+    });
+  </script>
+</body>
+</html>
