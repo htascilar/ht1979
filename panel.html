@@ -12,6 +12,30 @@
     }
   </style>
 </head>
+
+<!-- Dijital Saat ve Takvim (Sabit Sağ Üst) -->
+<div class="fixed top-4 right-4 flex flex-col items-end gap-3 z-50">
+  <div id="clock" class="text-3xl font-mono bg-black text-green-400 px-4 py-2 rounded-lg shadow-inner w-48 text-center">--:--:--</div>
+  <div id="calendar" class="text-sm font-mono bg-white text-gray-700 px-4 py-2 rounded-lg shadow w-48 text-center border border-gray-300">--.--.----</div>
+</div>
+
+<script>
+  function updateClock() {
+    const now = new Date();
+    const h = String(now.getHours()).padStart(2, '0');
+    const m = String(now.getMinutes()).padStart(2, '0');
+    const s = String(now.getSeconds()).padStart(2, '0');
+    document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+
+    const d = String(now.getDate()).padStart(2, '0');
+    const mo = String(now.getMonth() + 1).padStart(2, '0');
+    const y = now.getFullYear();
+    document.getElementById('calendar').textContent = `${d}.${mo}.${y}`;
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
+</script>
+
 <body class="min-h-screen text-gray-800 font-sans relative dark:bg-gray-900 dark:text-white">
 
   <!-- ÜST BAR -->
@@ -82,25 +106,6 @@
     </section>
 
     
-    <!-- Dijital Saat -->
-    <section class="bg-white bg-opacity-50 backdrop-blur-md rounded-2xl p-6 shadow-lg flex flex-col items-center col-span-full">
-      <h2 class="text-lg font-semibold mb-4">🕰️ Dijital Saat</h2>
-      <div id="clock" class="text-4xl font-mono bg-black text-green-400 px-6 py-3 rounded-xl shadow-inner">--:--:--</div>
-    </section>
-
-    <script>
-      function updateClock() {
-        const now = new Date();
-        const h = String(now.getHours()).padStart(2, '0');
-        const m = String(now.getMinutes()).padStart(2, '0');
-        const s = String(now.getSeconds()).padStart(2, '0');
-        document.getElementById('clock').textContent = `${h}:${m}:${s}`;
-      }
-      setInterval(updateClock, 1000);
-      updateClock();
-    </script>
-
-
     <!-- Günlük Kayıtlar -->
     <section class="bg-white bg-opacity-50 dark:bg-gray-800 dark:bg-opacity-70 backdrop-blur-md rounded-2xl p-6 shadow-lg col-span-full">
       <h2 class="text-lg font-semibold mb-4">📅 Günlük Kayıtlar</h2>
@@ -134,7 +139,7 @@
     © 2025 HT1979 • Mesai Takip Paneli
   </footer>
   <div class="fixed bottom-2 right-4 text-xs text-gray-400 font-mono bg-white bg-opacity-70 px-2 py-1 rounded shadow">
-    v1.1.1
+    v1.1.2
   </div>
 
 
