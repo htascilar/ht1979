@@ -59,11 +59,40 @@
       <textarea rows="4" class="w-full p-3 border border-gray-300 rounded-lg resize-none" placeholder="Günlük planını saat saat yaz..."></textarea>
     </section>
 
+    
+    <!-- İş Planım & Raporlarım -->
+    <section class="bg-white bg-opacity-50 backdrop-blur-md rounded-2xl p-6 shadow-lg col-span-full">
+      <h2 class="text-lg font-semibold">📂 İş Planım & Raporlarım</h2>
+      <textarea rows="6" class="w-full p-3 border border-gray-300 rounded-lg resize-none" placeholder="Haftalık iş planını ve rapor notlarını buraya yaz..."></textarea>
+      <button class="mt-3 bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded shadow">Kaydet</button>
+    </section>
+
+
     <!-- Takvim -->
     <section class="bg-white bg-opacity-50 dark:bg-gray-800 dark:bg-opacity-70 backdrop-blur-md rounded-2xl p-6 shadow-lg col-span-1 md:col-span-2 xl:col-span-3">
       <h2 class="text-lg font-semibold">📆 Takvim</h2>
       <div class="bg-gray-100 text-center text-gray-600 p-6 mt-2 rounded">📅 Takvim görünümü buraya gelecek</div>
     </section>
+
+    
+    <!-- Dijital Saat -->
+    <section class="bg-white bg-opacity-50 backdrop-blur-md rounded-2xl p-6 shadow-lg flex flex-col items-center col-span-full">
+      <h2 class="text-lg font-semibold mb-4">🕰️ Dijital Saat</h2>
+      <div id="clock" class="text-4xl font-mono bg-black text-green-400 px-6 py-3 rounded-xl shadow-inner">--:--:--</div>
+    </section>
+
+    <script>
+      function updateClock() {
+        const now = new Date();
+        const h = String(now.getHours()).padStart(2, '0');
+        const m = String(now.getMinutes()).padStart(2, '0');
+        const s = String(now.getSeconds()).padStart(2, '0');
+        document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+      }
+      setInterval(updateClock, 1000);
+      updateClock();
+    </script>
+
 
     <!-- Günlük Kayıtlar -->
     <section class="bg-white bg-opacity-50 dark:bg-gray-800 dark:bg-opacity-70 backdrop-blur-md rounded-2xl p-6 shadow-lg col-span-full">
@@ -98,7 +127,7 @@
     © 2025 HT1979 • Mesai Takip Paneli
   </footer>
   <div class="fixed bottom-2 right-4 text-xs text-gray-400 font-mono bg-white bg-opacity-70 px-2 py-1 rounded shadow">
-    v1.0.8
+    v1.1.0
   </div>
 
 
