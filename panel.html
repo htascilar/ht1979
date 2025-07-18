@@ -13,10 +13,13 @@
   </style>
 </head>
 
-<!-- Dijital Saat ve Takvim (Sabit Sağ Üst) -->
-<div class="fixed top-4 right-4 flex flex-col items-end gap-3 z-50">
-  <div id="clock" class="text-3xl font-mono bg-black text-green-400 px-4 py-2 rounded-lg shadow-inner w-48 text-center">--:--:--</div>
-  <div id="calendar" class="text-sm font-mono bg-white text-gray-700 px-4 py-2 rounded-lg shadow w-48 text-center border border-gray-300">--.--.----</div>
+
+
+
+<!-- Dijital Saat & Takvim (Birleşik Sağ Üst) -->
+<div class="fixed top-4 right-4 z-50 bg-white bg-opacity-50 backdrop-blur-md shadow-lg rounded-2xl px-5 py-3 w-60">
+  <div id="clock" class="text-center text-2xl font-mono text-gray-800">--:--:--</div>
+  <div id="calendar" class="text-center text-sm font-mono text-gray-600 mt-1">--.--.----</div>
 </div>
 
 <script>
@@ -139,7 +142,7 @@
     © 2025 HT1979 • Mesai Takip Paneli
   </footer>
   <div class="fixed bottom-2 right-4 text-xs text-gray-400 font-mono bg-white bg-opacity-70 px-2 py-1 rounded shadow">
-    v1.1.2
+    v1.1.3
   </div>
 
 
