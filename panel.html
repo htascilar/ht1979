@@ -1,15 +1,78 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
   <meta charset="UTF-8">
-  <title>Panel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesai Takip Paneli</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: rgba(243, 244, 246, 0.6);
+      backdrop-filter: blur(12px);
+    }
+  </style>
 </head>
-<body>
-  <h1>📁 HT1979 - Kişisel Panel</h1>
-  <p>Giriş başarılı, artık bu sayfayı görebiliyorsun ✅</p>
+<body class="min-h-screen text-gray-800 font-sans relative">
+  <header class="bg-white bg-opacity-40 shadow-lg p-4 flex items-center justify-between">
+    <h1 class="text-2xl font-bold">📁 HT1979 - Mesai Takip</h1>
+  </header>
 
-  <button onclick="logout()" style="margin-top:20px;padding:10px 20px;background-color:#dc2626;color:white;border:none;border-radius:6px;cursor:pointer;">Oturumu Kapat</button>
+  <main class="p-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+    <!-- Kullanıcı ve Tarih -->
+    <section class="bg-white bg-opacity-50 backdrop-blur-md rounded-2xl p-6 shadow-lg">
+      <h2 class="text-lg font-semibold mb-2">👤 Kullanıcı</h2>
+      <p class="text-xl">Hoş geldin, <span id="username" class="font-bold">Kullanıcı Adı</span></p>
+      <p class="text-sm text-gray-600 mt-1">Tarih: <span id="current-date">18.07.2025</span></p>
+    </section>
+
+    <!-- Başlat / Bitir Butonları -->
+    <section class="bg-white bg-opacity-50 backdrop-blur-md rounded-2xl p-6 shadow-lg flex flex-col gap-4">
+      <h2 class="text-lg font-semibold">⏱️ Mesai Kontrol</h2>
+      <button class="bg-green-500 hover:bg-green-600 text-white py-2 rounded-xl font-bold shadow">İşe Başla</button>
+      <button class="bg-red-500 hover:bg-red-600 text-white py-2 rounded-xl font-bold shadow">İşten Ayrıldım</button>
+    </section>
+
+    <!-- Geçen Süre ve Fazla Mesai -->
+    <section class="bg-white bg-opacity-50 backdrop-blur-md rounded-2xl p-6 shadow-lg">
+      <h2 class="text-lg font-semibold">🕒 Süre Bilgisi</h2>
+      <p>Toplam Süre: <span class="font-bold">00:00:00</span></p>
+      <p>Fazla Mesai: <span class="font-bold text-blue-600">00:00:00</span></p>
+      <p>En Erken Çıkış Saati: <span class="font-semibold text-gray-700">17:45</span></p>
+    </section>
+
+    <!-- Günlük Kayıtlar Tablosu -->
+    <section class="bg-white bg-opacity-50 backdrop-blur-md rounded-2xl p-6 shadow-lg col-span-1 md:col-span-2 xl:col-span-3">
+      <h2 class="text-lg font-semibold mb-4">📅 Günlük Kayıtlar</h2>
+      <table class="w-full text-left border border-collapse border-gray-300">
+        <thead>
+          <tr class="bg-gray-200">
+            <th class="p-2">Tarih</th>
+            <th class="p-2">Giriş</th>
+            <th class="p-2">Çıkış</th>
+            <th class="p-2">Toplam</th>
+            <th class="p-2">Fazla</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hover:bg-gray-100">
+            <td class="p-2">18.07.2025</td>
+            <td class="p-2">09:00</td>
+            <td class="p-2">18:15</td>
+            <td class="p-2">08:30</td>
+            <td class="p-2 text-blue-600">+00:15</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <!-- Oturumu Kapat Butonu -->
+  <button onclick="logout()" class="fixed bottom-4 left-4 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl shadow">Oturumu Kapat</button>
+
+  <footer class="text-center text-sm text-gray-500 mt-6 p-4">
+    © 2025 HT1979 • Mesai Takip Paneli
+  </footer>
+
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
@@ -36,5 +99,4 @@
     };
   </script>
 </body>
-
 </html>
