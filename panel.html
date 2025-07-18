@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mesai Takip Paneli</title>
+  <title>Mesai Takip Paneli - Tam İskelet</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
@@ -13,16 +13,21 @@
   </style>
 </head>
 <body class="min-h-screen text-gray-800 font-sans relative">
+
+  <!-- ÜST BAR -->
   <header class="bg-white bg-opacity-40 shadow-lg p-4 flex items-center justify-between">
     <h1 class="text-2xl font-bold">📁 HT1979 - Mesai Takip</h1>
+    <button class="bg-gray-800 text-white px-3 py-1 rounded-xl text-sm shadow">🎨 Tema</button>
   </header>
 
+  <!-- ANA GRID -->
   <main class="p-4 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-    <!-- Kullanıcı ve Tarih -->
+
+    <!-- Kullanıcı Bilgisi -->
     <section class="bg-white bg-opacity-50 backdrop-blur-md rounded-2xl p-6 shadow-lg">
       <h2 class="text-lg font-semibold mb-2">👤 Kullanıcı</h2>
-      <p class="text-xl">Hoş geldin, <span id="username" class="font-bold">Kullanıcı Adı</span></p>
-      <p class="text-sm text-gray-600 mt-1">Tarih: <span id="current-date">18.07.2025</span></p>
+      <p class="text-xl">Hoş geldin, <span class="font-bold">Kullanıcı Adı</span></p>
+      <p class="text-sm text-gray-600 mt-1">Tarih: 18.07.2025</p>
     </section>
 
     <!-- Mesai Butonları -->
@@ -40,27 +45,33 @@
       <p>En Erken Çıkış Saati: <span class="font-semibold text-gray-700">17:45</span></p>
     </section>
 
-    <!-- Grafik Yeri (placeholder) -->
-    <section class="bg-white bg-opacity-50 backdrop-blur-md rounded-2xl p-6 shadow-lg">
-      <h2 class="text-lg font-semibold">📊 Haftalık Grafik</h2>
-      <div class="text-gray-500 text-sm">Grafikler burada gösterilecek...</div>
-    </section>
-
     <!-- Not Defteri -->
     <section class="bg-white bg-opacity-50 backdrop-blur-md rounded-2xl p-6 shadow-lg">
       <h2 class="text-lg font-semibold">📝 Not Defteri</h2>
-      <textarea placeholder="Bugün için bir not bırak..." rows="6" class="w-full p-3 border border-gray-300 rounded-lg resize-none"></textarea>
-      <button class="mt-3 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded shadow">Notu Kaydet</button>
+      <textarea rows="6" class="w-full p-3 border border-gray-300 rounded-lg resize-none" placeholder="Bugün için notlarını yaz..."></textarea>
+      <button class="mt-3 bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded shadow">Notu Kaydet</button>
     </section>
 
-    <!-- Görev Listesi -->
+    <!-- Görevler -->
     <section class="bg-white bg-opacity-50 backdrop-blur-md rounded-2xl p-6 shadow-lg">
-      <h2 class="text-lg font-semibold">✅ Günlük Görevler</h2>
+      <h2 class="text-lg font-semibold">✅ Görevler</h2>
       <ul class="space-y-2 mt-2">
         <li><input type="checkbox" class="mr-2">Toplantıya katıl</li>
-        <li><input type="checkbox" class="mr-2">Raporu tamamla</li>
-        <li><input type="checkbox" class="mr-2">E-postaları yanıtla</li>
+        <li><input type="checkbox" class="mr-2">Raporu hazırla</li>
+        <li><input type="checkbox" class="mr-2">E-postaları kontrol et</li>
       </ul>
+    </section>
+
+    <!-- Ajanda -->
+    <section class="bg-white bg-opacity-50 backdrop-blur-md rounded-2xl p-6 shadow-lg col-span-full">
+      <h2 class="text-lg font-semibold">📒 Ajanda</h2>
+      <textarea rows="4" class="w-full p-3 border border-gray-300 rounded-lg resize-none" placeholder="Günlük planını saat saat yaz..."></textarea>
+    </section>
+
+    <!-- Takvim -->
+    <section class="bg-white bg-opacity-50 backdrop-blur-md rounded-2xl p-6 shadow-lg col-span-1 md:col-span-2 xl:col-span-3">
+      <h2 class="text-lg font-semibold">📆 Takvim</h2>
+      <div class="bg-gray-100 text-center text-gray-600 p-6 mt-2 rounded">📅 Takvim görünümü buraya gelecek</div>
     </section>
 
     <!-- Günlük Kayıtlar -->
@@ -89,11 +100,12 @@
     </section>
   </main>
 
-  <!-- Oturumu Kapat Butonu -->
-  <button onclick="alert('Oturum kapatılacak')" class="fixed bottom-4 left-4 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl shadow">Oturumu Kapat</button>
+  <!-- Oturumu Kapat -->
+  <button onclick="alert('Çıkış yapılıyor')" class="fixed bottom-4 left-4 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl shadow">Oturumu Kapat</button>
 
   <footer class="text-center text-sm text-gray-500 mt-6 p-4">
     © 2025 HT1979 • Mesai Takip Paneli
   </footer>
+
 </body>
 </html>
