@@ -25,6 +25,7 @@
       </div>
       <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded">Giriş Yap</button>
     </form>
+<div id="errorBox" style="display:none;" class="mt-4 bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded text-sm text-center font-medium"></div>
     <p id="error-message" class="text-center text-red-600 mt-4"></p>
   </div>
 
@@ -71,3 +72,49 @@
   </script>
 </body>
 </html>
+
+
+
+<!-- Firebase Giriş -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyDwubhw-8P6s3zPJLYWkJF0Jyw5_sLWt2I",
+    authDomain: "ht1979-1d7ce.firebaseapp.com",
+    projectId: "ht1979-1d7ce",
+    storageBucket: "ht1979-1d7ce.appspot.com",
+    messagingSenderId: "212240988469",
+    appId: "1:212240988469:web:9262b1a5f8aeed4411b47c"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  document.getElementById("loginBtn").addEventListener("click", (e) => {
+    e.preventDefault();
+    const email = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const errorBox = document.getElementById("errorBox");
+    errorBox.style.display = "none";
+    errorBox.textContent = "";
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        window.location.href = 'panel.html';
+      })
+      .catch((error) => {
+        let message = "❌ Giriş başarısız.";
+        if (error.code === "auth/user-not-found") {
+          message = "❌ Böyle bir kullanıcı bulunamadı.";
+        } else if (error.code === "auth/wrong-password") {
+          message = "❌ Şifre hatalı.";
+        } else if (error.code === "auth/invalid-email") {
+          message = "❌ Geçersiz e-posta adresi.";
+        }
+        errorBox.textContent = message;
+        errorBox.style.display = "block";
+      });
+  });
+</script>
