@@ -67,7 +67,15 @@
           window.location.href = "index.html";
         })
         .catch((error) => {
-          errorDiv.textContent = "❌ " + error.message;
+          
+      if (error.code === "auth/user-not-found" || error.code === "auth/wrong-password") {
+        errorDiv.textContent = "❌ Hatalı e-posta veya şifre. Lütfen tekrar deneyin.";
+      } else if (error.code === "auth/invalid-email") {
+        errorDiv.textContent = "⚠️ Geçersiz e-posta formatı.";
+      } else {
+        errorDiv.textContent = "⚠️ Giriş yapılamadı: " + error.message;
+      }
+    
         });
     });
   </script>
