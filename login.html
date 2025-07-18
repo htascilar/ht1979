@@ -17,7 +17,6 @@
       📧 E-posta ve şifremi hatırla
     </label>
     <button type="submit">Giriş Yap</button>
-    <div class="error" id="error"></div>
   </form>
 
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
@@ -36,23 +35,11 @@
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
 
-    // Load remembered credentials
-    window.onload = () => {
-      const rememberedEmail = localStorage.getItem('email');
-      const rememberedPass = localStorage.getItem('password');
-      if (rememberedEmail && rememberedPass) {
-        document.getElementById('email').value = rememberedEmail;
-        document.getElementById('password').value = rememberedPass;
-        document.getElementById('rememberMe').checked = true;
-      }
-    };
-
     document.getElementById('loginForm').addEventListener('submit', function(e) {
       e.preventDefault();
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
       const rememberMe = document.getElementById('rememberMe').checked;
-      const errorDiv = document.getElementById('error');
 
       if (rememberMe) {
         localStorage.setItem('email', email);
@@ -66,10 +53,10 @@
         .then(() => {
           window.location.href = "index.html";
         })
-        .catch((error) => {
-  alert("❌ Hatalı e-posta veya şifre. Lütfen tekrar deneyin.");
-  window.location.href = "login.html";
-});
+        .catch(() => {
+          alert("❌ Hatalı e-posta veya şifre. Lütfen tekrar deneyin.");
+          window.location.href = "login.html";
+        });
     });
   </script>
 </body>
