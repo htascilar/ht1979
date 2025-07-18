@@ -2,19 +2,18 @@
 body {
   font-family: Arial, sans-serif;
   background: #f3f4f6;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  
   margin: 0;
+  padding: 0;
 }
 
 .login-container {
-  background: white;
+  background: #f3f4f6;
   padding: 30px;
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(0,0,0,0.1);
   width: 320px;
+  margin: 60px auto;
 }
 
 .login-container h2 {
