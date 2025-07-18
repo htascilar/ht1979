@@ -35,29 +35,31 @@
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
 
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-      const rememberMe = document.getElementById('rememberMe').checked;
+    window.onload = function () {
+      document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const rememberMe = document.getElementById('rememberMe').checked;
 
-      if (rememberMe) {
-        localStorage.setItem('email', email);
-        localStorage.setItem('password', password);
-      } else {
-        localStorage.removeItem('email');
-        localStorage.removeItem('password');
-      }
+        if (rememberMe) {
+          localStorage.setItem('email', email);
+          localStorage.setItem('password', password);
+        } else {
+          localStorage.removeItem('email');
+          localStorage.removeItem('password');
+        }
 
-      auth.signInWithEmailAndPassword(email, password)
-        .then(() => {
-          window.location.href = "index.html";
-        })
-        .catch(() => {
-          alert("❌ Hatalı e-posta veya şifre. Lütfen tekrar deneyin.");
-          window.location.href = "login.html";
-        });
-    });
+        auth.signInWithEmailAndPassword(email, password)
+          .then(() => {
+            window.location.href = "index.html";
+          })
+          .catch(() => {
+            alert("❌ Hatalı e-posta veya şifre. Lütfen tekrar deneyin.");
+            window.location.href = "login.html";
+          });
+      });
+    };
   </script>
 </body>
 </html>
