@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mesai Takip Paneli</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -25,14 +25,14 @@
       <p class="text-sm text-gray-600 mt-1">Tarih: <span id="current-date">18.07.2025</span></p>
     </section>
 
-    <!-- Başlat / Bitir Butonları -->
+    <!-- Mesai Butonları -->
     <section class="bg-white bg-opacity-50 backdrop-blur-md rounded-2xl p-6 shadow-lg flex flex-col gap-4">
       <h2 class="text-lg font-semibold">⏱️ Mesai Kontrol</h2>
       <button class="bg-green-500 hover:bg-green-600 text-white py-2 rounded-xl font-bold shadow">İşe Başla</button>
       <button class="bg-red-500 hover:bg-red-600 text-white py-2 rounded-xl font-bold shadow">İşten Ayrıldım</button>
     </section>
 
-    <!-- Geçen Süre ve Fazla Mesai -->
+    <!-- Süre Bilgisi -->
     <section class="bg-white bg-opacity-50 backdrop-blur-md rounded-2xl p-6 shadow-lg">
       <h2 class="text-lg font-semibold">🕒 Süre Bilgisi</h2>
       <p>Toplam Süre: <span class="font-bold">00:00:00</span></p>
@@ -40,8 +40,31 @@
       <p>En Erken Çıkış Saati: <span class="font-semibold text-gray-700">17:45</span></p>
     </section>
 
-    <!-- Günlük Kayıtlar Tablosu -->
-    <section class="bg-white bg-opacity-50 backdrop-blur-md rounded-2xl p-6 shadow-lg col-span-1 md:col-span-2 xl:col-span-3">
+    <!-- Grafik Yeri (placeholder) -->
+    <section class="bg-white bg-opacity-50 backdrop-blur-md rounded-2xl p-6 shadow-lg">
+      <h2 class="text-lg font-semibold">📊 Haftalık Grafik</h2>
+      <div class="text-gray-500 text-sm">Grafikler burada gösterilecek...</div>
+    </section>
+
+    <!-- Not Defteri -->
+    <section class="bg-white bg-opacity-50 backdrop-blur-md rounded-2xl p-6 shadow-lg">
+      <h2 class="text-lg font-semibold">📝 Not Defteri</h2>
+      <textarea placeholder="Bugün için bir not bırak..." rows="6" class="w-full p-3 border border-gray-300 rounded-lg resize-none"></textarea>
+      <button class="mt-3 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded shadow">Notu Kaydet</button>
+    </section>
+
+    <!-- Görev Listesi -->
+    <section class="bg-white bg-opacity-50 backdrop-blur-md rounded-2xl p-6 shadow-lg">
+      <h2 class="text-lg font-semibold">✅ Günlük Görevler</h2>
+      <ul class="space-y-2 mt-2">
+        <li><input type="checkbox" class="mr-2">Toplantıya katıl</li>
+        <li><input type="checkbox" class="mr-2">Raporu tamamla</li>
+        <li><input type="checkbox" class="mr-2">E-postaları yanıtla</li>
+      </ul>
+    </section>
+
+    <!-- Günlük Kayıtlar -->
+    <section class="bg-white bg-opacity-50 backdrop-blur-md rounded-2xl p-6 shadow-lg col-span-full">
       <h2 class="text-lg font-semibold mb-4">📅 Günlük Kayıtlar</h2>
       <table class="w-full text-left border border-collapse border-gray-300">
         <thead>
@@ -67,36 +90,10 @@
   </main>
 
   <!-- Oturumu Kapat Butonu -->
-  <button onclick="logout()" class="fixed bottom-4 left-4 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl shadow">Oturumu Kapat</button>
+  <button onclick="alert('Oturum kapatılacak')" class="fixed bottom-4 left-4 bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-xl shadow">Oturumu Kapat</button>
 
   <footer class="text-center text-sm text-gray-500 mt-6 p-4">
     © 2025 HT1979 • Mesai Takip Paneli
   </footer>
-
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyDwubhw-8P6s3zPJLYWkJF0Jyw5_sLWt2I",
-      authDomain: "ht1979-1d7ce.firebaseapp.com",
-      projectId: "ht1979-1d7ce",
-      storageBucket: "ht1979-1d7ce.firebasestorage.app",
-      messagingSenderId: "212240988469",
-      appId: "1:212240988469:web:9262b1a5f8aeed4411b47c",
-      measurementId: "G-6XPK9S4FD4"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    window.logout = () => {
-      signOut(auth).then(() => {
-        window.location.href = "index.html";
-      }).catch((error) => {
-        alert("Çıkış yapılamadı: " + error.message);
-      });
-    };
-  </script>
 </body>
 </html>
